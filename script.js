@@ -46,9 +46,17 @@ function getPlayerSelection (askPlayerSelection) {
   }
 }
 
-function playRound(askPlayerSelection, computerSelection) {
-
+function playRound(playerSelection, computerSelection) {
+  if (playerSelection === computerSelection) {
+    return(`It\'s a tie! You both chose ${playerSelection}`);
+  }
+  else if ((playerSelection === 'Rock' && computerSelection === 'Scissors') || (playerSelection === 'Paper' && computerSelection === 'Rock') || (playerSelection === 'Scissors' && computerSelection === 'Paper')) {
+    return(`You Win! ${playerSelection} beats ${computerSelection}`);
+  }
+  else {
+    return(`You Lose! ${computerSelection} beats ${playerSelection}`);
+  }
 }
 
 getPlayerSelection(askPlayerSelection);
-playRound(playerSelection, computerSelection);
+console.log(playRound(playerSelection, computerSelection));
