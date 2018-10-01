@@ -9,27 +9,36 @@ function computerPlay(possibleChoices) {
 }
 
 const computerSelection = computerPlay(possibleChoices);
-const playerSelection = prompt('Rock, paper or scissors?', '');
-let playerSelectionFinal;
+const askPlayerSelection = prompt('Rock, paper or scissors?', '');
+let playerSelection;
 
-function playRound(playerSelection, computerSelection) {
-  if (playerSelection.search(/rock/i) !== -1) {
-    playerSelectionFinal = possibleChoices[0];
-    if (computerSelection === 'Rock') {
-      console.log(`It\'s a tie! You both chose ${playerSelectionFinal}`);
+function getPlayerSelection (askPlayerSelection) {
+  if (askPlayerSelection.search(/rock/i) !== -1) {
+    if (askPlayerSelection.search(/paper/i) !== -1 || askPlayerSelection.search(/scissors/i) !== -1) {
+      alert('You can only select one option!');
+      window.location.reload();
     }
-    else if (computerSelection === 'Paper') {
-      console.log(`You Won! ${playerSelectionFinal} beats ${computerSelection}`);
-    }
-    else if (computerSelection === 'Scissors') {
-      console.log(`You Lose! ${computerSelection} beats ${playerSelectionFinal}`);
+    else {
+      playerSelection = possibleChoices[0];
     }
   }
-  else if (playerSelection.search(/paper/i) !== -1) {
-    return (playerSelectionFinal = possibleChoices[1]);
+  else if (askPlayerSelection.search(/paper/i) !== -1) {
+    if (askPlayerSelection.search(/rock/i) !== -1 || askPlayerSelection.search(/scissors/i) !== -1) {
+      alert('You can only select one option!');
+      window.location.reload();
+    }
+    else {
+      playerSelection = possibleChoices[1];
+    }
   }
-  else if (playerSelection.search(/scissors/i) !== -1) {
-    return (playerSelectionFinal = possibleChoices[2]);
+  else if (askPlayerSelection.search(/scissors/i) !== -1) {
+    if (askPlayerSelection.search(/rock/i) !== -1 || askPlayerSelection.search(/paper/i) !== -1) {
+      alert('You can only select one option!');
+      window.location.reload();
+    }
+    else {
+      playerSelection = possibleChoices[2];
+    }
   }
   else {
     alert('You have to select either rock, paper or scissors! Try again ;)');
@@ -37,4 +46,9 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+function playRound(askPlayerSelection, computerSelection) {
+
+}
+
+getPlayerSelection(askPlayerSelection);
 playRound(playerSelection, computerSelection);
