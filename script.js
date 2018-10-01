@@ -14,7 +14,16 @@ let playerSelectionFinal;
 
 function playRound(playerSelection, computerSelection) {
   if (playerSelection.search(/rock/i) !== -1) {
-    return (playerSelectionFinal = possibleChoices[0]);
+    playerSelectionFinal = possibleChoices[0];
+    if (computerSelection === 'Rock') {
+      console.log(`It\'s a tie! You both chose ${playerSelectionFinal}`);
+    }
+    else if (computerSelection === 'Paper') {
+      console.log(`You Won! ${playerSelectionFinal} beats ${computerSelection}`);
+    }
+    else if (computerSelection === 'Scissors') {
+      console.log(`You Lose! ${computerSelection} beats ${playerSelectionFinal}`);
+    }
   }
   else if (playerSelection.search(/paper/i) !== -1) {
     return (playerSelectionFinal = possibleChoices[1]);
@@ -29,4 +38,3 @@ function playRound(playerSelection, computerSelection) {
 }
 
 playRound(playerSelection, computerSelection);
-console.log(playerSelectionFinal);
